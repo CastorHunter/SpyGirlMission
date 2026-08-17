@@ -22,6 +22,9 @@ public class PlayerMovement : NetworkBehaviour
         float vertical = Input.GetAxis("Vertical");
         
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-        transform.Translate( Time.deltaTime * speed * direction);
+        if (Physics.Raycast(transform.position, direction, 0.52f))
+            print("There is something in front of the object!");
+        else
+            transform.Translate( Time.deltaTime * speed * direction);
     }
 }
